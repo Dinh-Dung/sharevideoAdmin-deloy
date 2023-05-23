@@ -61,7 +61,7 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     (async () => {
-      if (accessToken) await getUserByAccessToken();
+      await getUserByAccessToken();
       setLoading(false);
     })();
   }, [accessToken]);
