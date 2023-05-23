@@ -1,1 +1,1 @@
-export const BASE_URL = `https://sharevideo-admin.onrender.com`;
+export const BASE_URL = `https://sharevideo-server.onrender.com`;
