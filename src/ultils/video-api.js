@@ -1,8 +1,9 @@
 import axios from "axios";
+import { BASE_URL } from "../constants/base_url";
 export async function getPendingVideos() {
   try {
     const { data, error } = await axios.get(
-      `http://localhost:8080/admin/getPendingVideos`
+      `${BASE_URL}/admin/getPendingVideos`
     );
 
     if (!data || error) throw new Error();
@@ -15,7 +16,7 @@ export async function getPendingVideos() {
 export async function accpetPendingVideo(videoId, accept) {
   try {
     const { data, error } = await axios.post(
-      `http://localhost:8080/admin/acceptPendingVideo`,
+      `${BASE_URL}/admin/acceptPendingVideo`,
       { videoId, accept }
     );
 
@@ -28,10 +29,9 @@ export async function accpetPendingVideo(videoId, accept) {
 }
 export async function deleteVideo(videoId) {
   try {
-    const { data, error } = await axios.post(
-      `http://localhost:8080/video/deleteVideo`,
-      { videoId }
-    );
+    const { data, error } = await axios.post(`${BASE_URL}/video/deleteVideo`, {
+      videoId,
+    });
 
     if (!data || error) throw new Error();
 

@@ -1,11 +1,12 @@
 import axios from "axios";
+import { BASE_URL } from "../constants/base_url";
 
 async function login(username, password) {
   try {
-    const { data, error } = await axios.post(
-      "http://localhost:8080/user/login",
-      { username, password }
-    );
+    const { data, error } = await axios.post(`${BASE_URL}/user/login`, {
+      username,
+      password,
+    });
 
     if (!data || error) throw new Error();
 
@@ -23,7 +24,7 @@ async function login(username, password) {
 async function refreshToken(token) {
   try {
     const { data, error } = await axios.get(
-      "http://localhost:8080/user/refresh-token?token=" + token
+      `${BASE_URL}/user/refresh-token?token=` + token
     );
 
     if (!data || error) throw new Error();
@@ -40,9 +41,7 @@ async function refreshToken(token) {
 
 async function getUser() {
   try {
-    const { data, error } = await axios.get(
-      "http://localhost:8080/user/getProfile"
-    );
+    const { data, error } = await axios.get(`${BASE_URL}/user/getProfile`);
     if (!data || error) throw new Error();
 
     return data.data;
@@ -53,9 +52,7 @@ async function getUser() {
 
 async function getAllUser() {
   try {
-    const { data, error } = await axios.get(
-      "http://localhost:8080/admin/getAllUser"
-    );
+    const { data, error } = await axios.get(`${BASE_URL}/admin/getAllUser`);
     if (!data || error) throw new Error();
 
     return data.data;
@@ -66,10 +63,7 @@ async function getAllUser() {
 
 async function signUp(newUser) {
   try {
-    const { data } = await axios.post(
-      `http://localhost:8080/user/register`,
-      newUser
-    );
+    const { data } = await axios.post(`${BASE_URL}/user/register`, newUser);
 
     if (!data) throw new Error();
     return data.data;
